@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from web3 import Web3
 from web3.middleware import geth_poa_middleware
 from colorama import Fore, Style, init
+import pyfiglet  # Added for ASCII art
 
 # Initialize colorama
 init(autoreset=True)
@@ -106,6 +107,12 @@ def print_warning(message):
 
 def print_magenta(message):
     print(Fore.MAGENTA + message + Style.RESET_ALL)
+
+def show_banner():
+    """Display ASCII art banner"""
+    ascii_art = pyfiglet.figlet_format('BOT BEAN MADE BY JAWA', font='ansi_shadow')
+    print(Fore.MAGENTA + ascii_art)
+    print()
 
 def get_native_balance(wallet_address):
     """Get native MON balance in ether"""
@@ -291,6 +298,9 @@ def main_loop(private_key):
             time.sleep(random.randint(5, 15))
 
 if __name__ == "__main__":
+    # Show banner
+    show_banner()
+    
     # Load wallets from .env
     wallets = load_wallets_from_env()
     if not wallets:
